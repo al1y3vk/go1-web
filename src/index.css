@@ -17,9 +17,11 @@ body {
   height: 100vh;
 }
 
+/* ─── Header ─── */
+
 header {
   background: #16213e;
-  padding: 12px 24px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -28,6 +30,24 @@ header {
 }
 
 header h1 { font-size: 1.3em; font-weight: 600; }
+
+.view-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.tab {
+  background: transparent;
+  border: 1px solid #0f3460;
+  color: #8899aa;
+  padding: 4px 16px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tab:hover { background: #0f3460; color: #ccc; }
+.tab.active { background: #0f3460; color: #e0e0e0; font-weight: 600; }
 
 .status {
   margin-left: auto;
@@ -38,6 +58,8 @@ header h1 { font-size: 1.3em; font-weight: 600; }
 }
 .connected { background: #1b4332; color: #95d5b2; }
 .disconnected { background: #3d0000; color: #ff6b6b; }
+
+/* ─── Dashboard panels ─── */
 
 .panels {
   display: flex;
@@ -91,12 +113,13 @@ header h1 { font-size: 1.3em; font-weight: 600; }
   background: #0d1b2a;
 }
 
+/* Teleop panel in dashboard */
 .teleop-panel .panel-body {
   flex-direction: column;
-  gap: 16px;
-  padding: 20px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  gap: 8px;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
 }
 
 .teleop-hints p { margin-bottom: 6px; font-size: 0.9em; color: #8899aa; }
@@ -110,18 +133,24 @@ kbd {
 }
 
 .teleop-status {
-  font-size: 1em;
-  padding: 8px 12px;
+  font-size: 0.85em;
+  padding: 6px 12px;
   background: #0d1b2a;
   border-radius: 6px;
   font-family: monospace;
-  width: 100%;
+  text-align: center;
 }
 .teleop-status.disabled { color: #556; }
 
 .gamepad-indicator {
   font-size: 0.8em;
   color: #95d5b2;
+}
+
+/* Dashboard gamepad SVG — fit inside panel */
+.dashboard-gamepad-svg {
+  width: 500px;
+  height: auto;
 }
 
 .no-camera {
@@ -132,3 +161,57 @@ kbd {
   line-height: 1.8;
 }
 .no-camera code { font-size: 0.8em; color: #667; }
+
+/* ─── Teleop full-screen view ─── */
+
+.teleop-view {
+  flex: 1;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.teleop-camera {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+}
+
+.teleop-camera img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.teleop-overlay {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.teleop-gamepad-svg {
+  width: 300px;
+  height: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7));
+}
+
+.teleop-overlay-status {
+  font-size: 0.85em;
+  padding: 6px 14px;
+  background: rgba(13, 27, 42, 0.85);
+  border-radius: 6px;
+  font-family: monospace;
+  color: #00e676;
+}
+.teleop-overlay-status.idle {
+  color: #8899aa;
+}
